@@ -440,16 +440,76 @@
             <span class="note-text">
                 Thật ra đây vẫn là gói Như luôn đề xuất trước giờ với học viên, vì nó giúp bạn linh hoạt và cân đối tài chính. Đây là một vấn đề tuy dễ mà khó, Như không muốn bạn ôm bụng lo lắng khi bước vào khóa học.
             </span>
-            <div class="price-tag">
-                1.400.000đ <span class="unit">/ tháng</span>
-            </div>
-            <span class="total-info">(Tổng khóa học: 8.400.000đ)</span>
-            <ul class="benefit-list">
-                <li>Chia nhỏ áp lực tài chính</li>
-                <li><b>Tặng 01 buổi Coaching 1:1 (60')</b></li>
-            </ul>
-        </div>
+<style>
+    /* Style chung để đảm bảo tính đồng nhất */
+    .price-card {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 25px;
+        border: 2px solid #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    
+    .price-tag {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 15px 0;
+        color: #2d3436;
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+    }
+
+    /* Class này để gạch chân giá cũ (8.4M) */
+    .old-price-strike {
+        font-size: 1rem;
+        text-decoration: line-through;
+        color: #b2bec3;
+        font-weight: normal;
+    }
+
+    /* Class này dành riêng cho chữ "/ tháng" - KHÔNG CÓ GẠCH NGANG */
+    .unit-text {
+        font-size: 0.9rem;
+        font-weight: normal;
+        color: #636e72;
+        text-decoration: none !important; /* Đảm bảo không bị gạch */
+    }
+
+    .total-info-orange {
+        display: block;
+        font-size: 0.85rem;
+        color: #e67e22;
+        margin-top: -10px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="price-card">
+    <div class="badge" style="background: #B8D6D9; color: #2d3436; position: absolute; top: -12px; right: 20px; padding: 4px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">RECOMMENDED</div>
+    <h3 style="font-family: 'Playfair Display', serif;">Gói "Bạn đồng hành"</h3>
+    
+    <span style="font-size: 0.85rem; line-height: 1.5; color: #636e72; margin-bottom: 15px;">
+        Thật ra đây vẫn là gói Như luôn đề xuất trước giờ với học viên, vì nó giúp bạn linh hoạt và cân đối tài chính. Đây là một vấn đề tuy dễ mà khó, Như không muốn bạn ôm bụng lo lắng khi bước vào khóa học.
+    </span>
+
+    <div class="price-tag">
+        1.400.000đ <span class="unit-text">/ tháng</span>
     </div>
+    
+    <span class="total-info-orange">(Tổng khóa học: 8.400.000đ)</span>
+
+    <ul style="list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem;">
+        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+            <span style="margin-right: 10px;">🌸</span> Chia nhỏ áp lực tài chính
+        </li>
+        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+            <span style="margin-right: 10px;">🌸</span> <b>Tặng 01 buổi Coaching 1:1 (60')</b>
+        </li>
+    </ul>
+</div>
     
     <div style="margin-top: 40px; padding: 20px; background-color: #fdf2f7; border-radius: 15px; text-align: center; border: 1px dashed #F2C9DC;">
         <p style="margin: 0; color: #2d3436; font-size: 0.95rem;">
