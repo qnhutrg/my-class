@@ -360,88 +360,15 @@
         </div>
 
 <style>
-    /* Fix lỗi gạch ngang bị lem sang đơn vị */
-    .price-tag {
-        font-size: 1.8rem;
-        font-weight: bold;
-        margin: 15px 0;
-        color: var(--text-dark);
+    /* Tổng quan Grid học phí */
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
     }
-    .old-price {
-        font-size: 1rem;
-        text-decoration: line-through;
-        color: #b2bec3;
-        font-weight: normal;
-        margin-right: 8px;
-    }
-    .unit {
-        font-size: 0.9rem;
-        font-weight: normal;
-        color: var(--text-gray);
-    }
-    .total-info {
-        display: block;
-        font-size: 0.85rem;
-        color: #e67e22; /* Màu cam nhẹ để nhấn mạnh giá trị đợt/tổng */
-        margin-top: -10px;
-        margin-bottom: 15px;
-    }
-    .note-text {
-        font-size: 0.85rem;
-        line-height: 1.5;
-        color: #636e72;
-        margin-bottom: 15px;
-        display: block;
-    }
-</style>
 
-<section id="tuition-14" style="margin-top: 80px;">
-    <h2 style="text-align: center; margin-bottom: 10px;">🌸 Học phí & Sự đồng hành</h2>
-    <p style="text-align: center; font-weight: bold; font-size: 1.1rem; color: #2d3436; margin-bottom: 40px;">
-        Học phí gốc toàn khóa (48 buổi): 8.400.000đ
-    </p>
-
-    <div class="pricing-grid">
-        <div class="price-card">
-            <div class="badge" style="background: #093076;">COMMITMENT</div>
-            <h3>Gói "Bạn đời"</h3>
-            <span class="note-text">
-                Trước khi chọn gói này, bạn nghĩ thật kỹ nhé! Vì nó sẽ "chặn đường lui" của bạn trên hành trình học tiếng Anh, và cũng là lời cam kết lớn nhất bạn đặt ra cho chính mình đấy. Thật ra lại là gói Như... ít đề xuất nhất vì nó không mang tính linh hoạt. Nhưng quyết định, là ở bạn 😉
-            </span>
-            <div class="price-tag">
-                <span class="old-price">8.400.000đ</span>7.900.000đ
-            </div>
-            <span class="total-info">(Tiết kiệm 500.000đ tiền mặt)</span>
-            <ul class="benefit-list">
-                <li><b>Tặng 02 buổi Coaching 1:1 (45')</b></li>
-                <li style="font-size: 0.8rem; font-style: italic; color: #636e72; list-style:none;">*Có thể dùng ngay trong lúc khóa học diễn ra</li>
-            </ul>
-        </div>
-
-        <div class="price-card popular">
-            <div class="badge">BEST CHOICE</div>
-            <h3>Gói "Bạn tri kỉ"</h3>
-            <span class="note-text">
-                Nếu bạn vẫn muốn cam kết và có giải pháp linh hoạt, Như nghĩ lựa chọn này phù hợp với bạn. Với 2 lần đóng, lần 1 trước khi khóa diễn ra, và lần 2 khi đến buổi thứ 24 của khóa.
-            </span>
-            <div class="price-tag">
-                <span class="old-price">8.400.000đ</span>8.200.000đ
-            </div>
-            <span class="total-info">(Đóng 2 lần: 4.100.000đ / đợt)</span>
-            <ul class="benefit-list">
-                <li>Tiết kiệm 200.000đ</li>
-                <li><b>Tặng 01 buổi Coaching 1:1 (60')</b></li>
-            </ul>
-        </div>
-
-        <div class="price-card">
-            <div class="badge" style="background: #B8D6D9; color: #2d3436;">RECOMMENDED</div>
-            <h3>Gói "Bạn đồng hành"</h3>
-            <span class="note-text">
-                Thật ra đây vẫn là gói Như luôn đề xuất trước giờ với học viên, vì nó giúp bạn linh hoạt và cân đối tài chính. Đây là một vấn đề tuy dễ mà khó, Như không muốn bạn ôm bụng lo lắng khi bước vào khóa học.
-            </span>
-<style>
-    /* Style chung để đảm bảo tính đồng nhất */
+    /* Thẻ giá chung */
     .price-card {
         background: #ffffff;
         padding: 30px;
@@ -450,8 +377,16 @@
         display: flex;
         flex-direction: column;
         position: relative;
+        transition: all 0.3s ease;
     }
-    
+
+    .price-card.popular {
+        border-color: #F2C9DC;
+        background: #fdf2f7;
+        transform: scale(1.02);
+    }
+
+    /* Hiệu ứng giá tiền */
     .price-tag {
         font-size: 1.8rem;
         font-weight: bold;
@@ -462,7 +397,7 @@
         gap: 8px;
     }
 
-    /* Class này để gạch chân giá cũ (8.4M) */
+    /* Class gạch ngang giá cũ (8.4M) */
     .old-price-strike {
         font-size: 1rem;
         text-decoration: line-through;
@@ -470,14 +405,16 @@
         font-weight: normal;
     }
 
-    /* Class này dành riêng cho chữ "/ tháng" - KHÔNG CÓ GẠCH NGANG */
-    .unit-text {
+    /* Class KHÔNG GẠCH NGANG dành cho đơn vị thời gian / đợt */
+    .no-strike {
         font-size: 0.9rem;
         font-weight: normal;
         color: #636e72;
-        text-decoration: none !important; /* Đảm bảo không bị gạch */
+        text-decoration: none !important;
+        display: inline-block;
     }
 
+    /* Thông tin phụ màu cam */
     .total-info-orange {
         display: block;
         font-size: 0.85rem;
@@ -485,35 +422,101 @@
         margin-top: -10px;
         margin-bottom: 15px;
     }
+
+    .note-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: #636e72;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .benefit-list-clean {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+        font-size: 0.9rem;
+    }
+
+    .benefit-list-clean li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .badge-label {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        padding: 4px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
 </style>
 
-<div class="price-card">
-    <div class="badge" style="background: #B8D6D9; color: #2d3436; position: absolute; top: -12px; right: 20px; padding: 4px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">RECOMMENDED</div>
-    <h3 style="font-family: 'Playfair Display', serif;">Gói "Bạn đồng hành"</h3>
-    
-    <span style="font-size: 0.85rem; line-height: 1.5; color: #636e72; margin-bottom: 15px;">
-        Thật ra đây vẫn là gói Như luôn đề xuất trước giờ với học viên, vì nó giúp bạn linh hoạt và cân đối tài chính. Đây là một vấn đề tuy dễ mà khó, Như không muốn bạn ôm bụng lo lắng khi bước vào khóa học.
-    </span>
+<section id="tuition-1:4" style="margin-top: 60px;">
+    <h2 style="text-align: center; font-family: 'Playfair Display', serif;">🌸 Học phí & Sự đồng hành</h2>
+    <p style="text-align: center; font-weight: bold; font-size: 1.1rem; color: #2d3436; margin-bottom: 40px;">
+        Học phí gốc toàn khóa (48 buổi): 8.400.000đ
+    </p>
 
-    <div class="price-tag">
-        1.400.000đ <span class="unit-text">/ tháng</span>
+    <div class="pricing-grid">
+        
+        <div class="price-card">
+            <div class="badge-label" style="background: #093076; color: white;">COMMITMENT</div>
+            <h3 style="font-family: 'Playfair Display', serif;">Gói "Bạn đời"</h3>
+            <span class="note-text">Trước khi chọn gói này, bạn nghĩ thật kỹ nhé! Vì nó sẽ "chặn đường lui" của bạn, và cũng là lời cam kết lớn nhất bạn đặt ra cho chính mình. Quyết định là ở bạn 😉</span>
+            
+            <div class="price-tag">
+                <span class="old-price-strike">8.400.000đ</span> 7.900.000đ
+            </div>
+            <span class="total-info-orange">(Tiết kiệm 500.000đ tiền mặt)</span>
+
+            <ul class="benefit-list-clean">
+                <li>🌸 <b>Tặng 02 buổi Coaching 1:1 (45')</b></li>
+                <li style="font-size: 0.8rem; font-style: italic; margin-left: 25px;">*Có thể dùng ngay trong lúc khóa học diễn ra</li>
+            </ul>
+        </div>
+
+        <div class="price-card popular">
+            <div class="badge-label" style="background: #F2C9DC; color: white;">BEST CHOICE</div>
+            <h3 style="font-family: 'Playfair Display', serif;">Gói "Bạn tri kỉ"</h3>
+            <span class="note-text">Nếu bạn vẫn muốn cam kết và có giải pháp linh hoạt, Như nghĩ lựa chọn này phù hợp với bạn. Với 2 lần đóng phí giữa chặng.</span>
+            
+            <div class="price-tag">
+                <span class="old-price-strike">8.400.000đ</span> 8.200.000đ 
+                <span class="no-strike" style="margin-left: 5px;">(4.1M / đợt)</span>
+            </div>
+            <span class="total-info-orange">(Tiết kiệm 200.000đ)</span>
+
+            <ul class="benefit-list-clean">
+                <li>🌸 Tiết kiệm hơn so với đóng tháng</li>
+                <li>🌸 <b>Tặng 01 buổi Coaching 1:1 (60')</b></li>
+            </ul>
+        </div>
+
+        <div class="price-card">
+            <div class="badge-label" style="background: #B8D6D9; color: #2d3436;">RECOMMENDED</div>
+            <h3 style="font-family: 'Playfair Display', serif;">Gói "Bạn đồng hành"</h3>
+            <span class="note-text">Đây vẫn là gói Như luôn đề xuất, vì nó giúp bạn linh hoạt tài chính. Như không muốn bạn ôm bụng lo lắng khi bước vào lớp học.</span>
+            
+            <div class="price-tag">
+                1.400.000đ <span class="no-strike">/ tháng</span>
+            </div>
+            <span class="total-info-orange">(Tổng khóa học: 8.400.000đ)</span>
+
+            <ul class="benefit-list-clean">
+                <li>🌸 Chia nhỏ áp lực tài chính hàng tháng</li>
+                <li>🌸 <b>Tặng 01 buổi Coaching 1:1 (60')</b></li>
+            </ul>
+        </div>
+
     </div>
-    
-    <span class="total-info-orange">(Tổng khóa học: 8.400.000đ)</span>
 
-    <ul style="list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem;">
-        <li style="margin-bottom: 10px; display: flex; align-items: center;">
-            <span style="margin-right: 10px;">🌸</span> Chia nhỏ áp lực tài chính
-        </li>
-        <li style="margin-bottom: 10px; display: flex; align-items: center;">
-            <span style="margin-right: 10px;">🌸</span> <b>Tặng 01 buổi Coaching 1:1 (60')</b>
-        </li>
-    </ul>
-</div>
-    
-    <div style="margin-top: 40px; padding: 20px; background-color: #fdf2f7; border-radius: 15px; text-align: center; border: 1px dashed #F2C9DC;">
+    <div style="margin-top: 40px; padding: 20px; background-color: #fdf2f7; border-radius: 20px; text-align: center; border: 1px dashed #F2C9DC;">
         <p style="margin: 0; color: #2d3436; font-size: 0.95rem;">
-            ✨ Đặc biệt với các bạn sinh viên, nếu các bạn tạm thời đang loay hoay với chi phí học, các bạn đừng ngại nhắn cho chị nha. Nếu có thể, chị rất mong hỗ trợ được các bạn ❤️
+            ✨ <b>Đặc biệt với các bạn sinh viên:</b> Nếu các bạn tạm thời đang loay hoay với chi phí học, các bạn đừng ngại nhắn cho chị nha. Nếu có thể, chị rất mong được hỗ trợ các bạn ❤️
         </p>
     </div>
 </section>
