@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     
     <style>
+        /* === BIẾN MÀU SẮC TỪ BẢN MỚI NHẤT === */
         :root {
-            /* Palette màu đậm đà hơn theo feedback */
-            --primary-blue: #093076; /* Đậm đà cho Heading */
+            --primary-blue: #093076;
             --pastel-pink: #F2C9DC;
             --hot-pink: #F2A7D0;
             --teal-blue: #B8D6D9;
@@ -17,8 +17,11 @@
             --soft-white: #FCFDFD;
             --text-dark: #1a1a1a;
             --text-gray: #4a4a4a;
+            --white: #ffffff;
+            --soft-pink: #fdf2f7;
         }
 
+        /* === CẤU TRÚC CHUNG === */
         * { box-sizing: border-box; scroll-behavior: smooth; }
         
         body { 
@@ -38,7 +41,19 @@
 
         h2 { font-size: 2.2rem; margin-bottom: 1.5rem; position: relative; }
 
-        /* Navigation */
+        /* === HIGHLIGHT EFFECT (ĐÃ LẤY TỪ BẢN CẦN GIỮ) === */
+        .highlight {
+            background: linear-gradient(to right, var(--pastel-pink) 50%, transparent 50%);
+            background-size: 200% 100%;
+            background-position: right bottom;
+            display: inline;
+            padding: 2px 8px;
+            transition: background-position 1s ease-out;
+            border-radius: 4px;
+        }
+        .highlight.active { background-position: left bottom; }
+
+        /* === NAVIGATION === */
         nav {
             background: rgba(255, 255, 255, 0.98);
             padding: 0.8rem 5%;
@@ -62,7 +77,6 @@
         }
         .nav-links a:hover { color: var(--hot-pink); }
 
-        /* Dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -85,7 +99,7 @@
         }
         .dropdown-content a:last-child { border: none; }
 
-        /* Hero & Daisy Animation */
+        /* === HERO & HOA CÚC RƠI (GIỮ NGUYÊN BẢN MỚI NHẤT) === */
         .hero {
             position: relative;
             height: 450px;
@@ -93,23 +107,12 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, var(--light-cyan), #fff, var(--pastel-pink));
-            overflow: hidden; /* Cúc chỉ rơi trong này */
+            overflow: hidden;
             text-align: center;
         }
 
-        #daisy-container {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-        }
-
-        .daisy {
-            position: absolute;
-            font-size: 20px;
-            user-select: none;
-            animation: fall linear infinite;
-        }
-
+        #daisy-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .daisy { position: absolute; font-size: 20px; user-select: none; animation: fall linear infinite; }
         @keyframes fall {
             0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
@@ -128,127 +131,135 @@
             border: 1px solid rgba(255,255,255,0.5);
         }
 
-        /* Profile Section Animation */
-        .about-flex {
-            display: flex;
-            gap: 60px;
-            align-items: center;
-            padding: 80px 0;
-            overflow: hidden;
-        }
+        /* === VÙNG GIỚI THIỆU TẠI TRANG CHỦ === */
+        .about-flex { display: flex; gap: 60px; align-items: center; padding: 80px 0; overflow: hidden; }
+        .about-img-container { flex: 1; opacity: 0; transform: translateX(-100px); transition: 1s ease-out; }
+        .about-img { width: 100%; max-width: 400px; border-radius: 40px; box-shadow: 20px 20px 0 var(--teal-blue); }
+        .about-text { flex: 1.5; opacity: 0; transform: translateX(100px); transition: 1s ease-out; }
+        .about-flex.show .about-img-container, .about-flex.show .about-text { opacity: 1; transform: translateX(0); }
 
-        .about-img-container {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(-100px);
-            transition: 1s ease-out;
+        .courses-section {
+            background-color: #D0EFF2; 
+            padding: 80px 20px;
+            border-radius: 50px; 
+            margin: 60px 0;
         }
-
-        .about-img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 40px;
-            box-shadow: 20px 20px 0 var(--teal-blue);
-        }
-
-        .about-text {
-            flex: 1.5;
-            opacity: 0;
-            transform: translateX(100px);
-            transition: 1s ease-out;
-        }
-
-        .about-flex.show .about-img-container,
-        .about-flex.show .about-text {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Timeline UI */
-        .timeline-container { position: relative; max-width: 850px; margin: 50px auto; padding-left: 20px; }
-        .timeline-item {
-            background: white;
-            margin-bottom: 35px;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
-            border-left: 10px solid var(--teal-blue);
-            transition: 0.3s;
-        }
-        .timeline-item:hover { transform: scale(1.02); }
-
-        /* Pricing UI Fixes */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .price-card {
+        .course-card {
             background: white;
             padding: 40px 30px;
-            border-radius: 35px;
-            border: 2px solid #f0f0f0;
+            border-radius: 25px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            border: 2px solid transparent;
             display: flex;
             flex-direction: column;
-            transition: 0.4s;
-            position: relative;
+            justify-content: space-between;
+            opacity: 0;
+            transform: translateY(30px);
         }
-        .price-card.popular { 
-            border-color: var(--hot-pink); 
-            background: #fffafa; 
-            transform: scale(1.03);
-            box-shadow: 0 20px 40px rgba(242, 167, 208, 0.15);
+        .course-card.show { opacity: 1; transform: translateY(0); }
+        .course-card:hover {
+            transform: translateY(-15px); 
+            box-shadow: 0 20px 40px rgba(242, 167, 208, 0.3); 
+            border-color: #F2A7D0; 
+            background-color: #fffafa; 
         }
-        
-        /* FIX: Sửa lỗi gạch ngang dính vào /tháng */
-        .price-tag { 
-            font-size: 2rem; 
-            font-weight: 800; 
-            color: var(--primary-blue); 
-            margin: 15px 0; 
-        }
-        .price-tag .old-price { 
-            text-decoration: line-through; 
-            color: #ccc; 
-            font-size: 1.2rem; 
-            margin-right: 10px;
-        }
-        .price-unit { 
-            text-decoration: none !important; 
-            display: inline-block; 
-            font-size: 1rem; 
-            color: var(--text-gray);
-            font-weight: 400;
-        }
+        .course-card h3 { color: #093076; margin-bottom: 20px; font-size: 1.5rem; }
+        .course-card p { color: #555; line-height: 1.6; margin-bottom: 25px; font-size: 0.95rem; }
+        .explore-btn { color: #F2A7D0; font-weight: bold; transition: 0.3s; }
+        .course-card:hover .explore-btn { letter-spacing: 1px; color: #D93076; }
 
-        /* Contact Section */
-        .contact-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            margin-top: 30px;
-        }
-        .contact-row {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .contact-link {
-            text-decoration: none;
-            color: var(--primary-blue);
-            font-weight: 600;
-            background: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: 1px solid var(--teal-blue);
-            transition: 0.3s;
-        }
+        /* Vùng danh thiếp liên hệ */
+        .contact-container { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-top: 30px; }
+        .contact-row { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+        .contact-link { text-decoration: none; color: var(--primary-blue); font-weight: 600; background: white; padding: 10px 20px; border-radius: 50px; border: 1px solid var(--teal-blue); transition: 0.3s; }
         .contact-link:hover { background: var(--teal-blue); color: white; }
 
-        /* Back to top */
+        /* === STYLE LỚP 1:1 VÀ 1:4 (LẤY TỪ BẢN CẦN GIỮ) === */
+        
+        /* 1. Timeline (Lộ trình học) */
+        .timeline-container { position: relative; max-width: 800px; margin: 40px auto; padding-left: 30px; }
+        .timeline-item {
+            background: var(--white);
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--pastel-blue);
+            position: relative;
+        }
+        .timeline-item h4 { margin: 0 0 10px 0; color: var(--text-dark); }
+
+        /* 2. Grid Học Phí (Thẻ bo tròn sạch sẽ, không gradient/shadow quá đà) */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 25px;
+            border: 2px solid #f0f0f0;
+            position: relative;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            box-shadow: none; /* Khử bóng nặng nề */
+        }
+        .price-card.popular { 
+            border-color: var(--pastel-pink); 
+            background: var(--soft-pink); 
+            transform: scale(1.03); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Bóng cực nhẹ */
+        }
+        .price-card h3 { margin: 0; font-size: 1.2rem; }
+        
+        /* Chi tiết giá tiền trong thẻ */
+        .price-tag { 
+            font-size: 1.8rem; font-weight: bold; margin: 15px 0; color: var(--text-dark); 
+            display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; 
+        }
+        .price-tag span { font-size: 0.9rem; text-decoration: line-through; color: #b2bec3; font-weight: normal; }
+        
+        /* Hỗ trợ các class sinh ra từ bản mới nhất */
+        .old-price-strike { text-decoration: line-through; color: #b2bec3; font-size: 1rem; font-weight: normal; }
+        .no-strike { font-size: 0.9rem; font-weight: normal; color: #636e72; text-decoration: none !important; display: inline-block; margin-left: 5px;}
+        .total-info-orange { display: block; font-size: 0.85rem; color: #e67e22; margin-top: -10px; margin-bottom: 15px; }
+        .note-text { font-size: 0.85rem; line-height: 1.5; color: #636e72; margin-bottom: 15px; display: block; }
+        
+        /* Danh sách quyền lợi */
+        .benefit-list, .benefit-list-clean { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; flex-grow: 1; }
+        .benefit-list li, .benefit-list-clean li { margin-bottom: 10px; display: flex; align-items: center; }
+        .benefit-list li::before, .benefit-list-clean li::before { content: '🌸'; margin-right: 10px; font-size: 0.8rem; }
+        
+        /* Nhãn/Badge của bản cũ */
+        .badge, .badge-label {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--pastel-pink);
+            color: white;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* === CÁC PAGE VÀ ANIMATION === */
+        .page { display: none; padding: 40px 8%; }
+        .page.active { display: block; animation: fadeIn 0.6s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .container { max-width: 1100px; margin: auto; }
+
+        /* Nút quay lại lên trên */
         .btn-up {
             position: fixed;
             bottom: 30px;
@@ -267,86 +278,6 @@
             z-index: 1000;
             transition: 0.3s;
         }
-
-        /* Utility */
-        .page { display: none; padding: 40px 8%; }
-        .page.active { display: block; animation: fadeIn 0.6s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .container { max-width: 1100px; margin: auto; }
-        .highlight { background: linear-gradient(120deg, var(--pastel-pink) 0%, var(--pastel-pink) 100%); background-repeat: no-repeat; background-size: 100% 0.3em; background-position: 0 88%; }
-
-        /* Course Tree Animation */
-        .course-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 30px;
-            width: 320px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.4s;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        .course-card.show { opacity: 1; transform: translateY(0); }
-        .course-card:hover { border: 2px solid var(--hot-pink); transform: translateY(-10px); }
-
-        /* CSS cho hiệu ứng Course Cards */
-.courses-section {
-    background-color: #D0EFF2; /* Màu xanh pastel từ palette */
-    padding: 80px 20px;
-    border-radius: 50px; /* Bo góc lớn cho cảm giác mềm mại */
-    margin: 60px 0;
-}
-
-.course-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 25px;
-    flex: 1;
-    min-width: 280px;
-    max-width: 350px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Hiệu ứng nhảy đàn hồi */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Đổ bóng nhẹ ban đầu */
-    border: 2px solid transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.course-card:hover {
-    transform: translateY(-15px); /* Nhảy lên */
-    box-shadow: 0 20px 40px rgba(242, 167, 208, 0.3); /* Đổ bóng màu hồng pastel */
-    border-color: #F2A7D0; /* Viền hồng khi hover */
-    background-color: #fffafa; /* Đổi màu nền nhẹ */
-}
-
-.course-card h3 {
-    color: #093076; /* Màu xanh đậm từ palette */
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-}
-
-.course-card p {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    font-size: 0.95rem;
-}
-
-.explore-btn {
-    color: #F2A7D0;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.course-card:hover .explore-btn {
-    letter-spacing: 1px; /* Chữ giãn ra nhẹ khi hover */
-    color: #D93076;
-}
     </style>
 </head>
 <body>
@@ -357,7 +288,7 @@
     <ul class="nav-links">
         <li><a onclick="navigateTo('home')">Như là ai?</a></li>
         <li class="dropdown">
-            <a href="#">Thông tin lớp ▾</a>
+            <a href="#">Thông margin lớp ▾</a>
             <div class="dropdown-content">
                 <a onclick="navigateTo('class11')">Lớp 1:1 (Personalized)</a>
                 <a onclick="navigateTo('class14')">Lớp 1:4 (Teamwork)</a>
@@ -393,47 +324,46 @@
                     <li>🎀 7 năm giảng dạy Phát âm & Giao tiếp người lớn</li>
                     <li>🎀 Cử nhân Ngôn ngữ Anh (ĐH Quốc tế - ĐHQG)</li>
                     <li>🎀 Chứng chỉ TESOL quốc tế 120H & IELTS Academic 7.5</li>
-                    </ul>
-                    <a href="https://qnhutrg.github.io/teaching-portfolio/" target="_blank" style="color: var(--text-dark); font-weight: bold; text-decoration: underline;">Xem thêm profile của Như tại đây</a>
-                </div>
+                </ul>
+                <a href="https://qnhutrg.github.io/teaching-portfolio/" target="_blank" style="color: var(--text-dark); font-weight: bold; text-decoration: underline;">Xem thêm profile của Như tại đây</a>
             </div>
         </section>
 
-<section id="courses" class="courses-section">
-    <h2 style="text-align: center; color: #093076; margin-bottom: 50px; font-size: 2rem;">
-        Các lớp học của Như 🎀
-    </h2>
-    
-    <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
-        
-        <div class="course-card" onclick="navigateTo('class11')">
-            <div class="course-content">
-                <h3>Lớp 1:1</h3>
-                <p>Nếu bạn cần một lộ trình cá nhân hóa, "dí" deadline sát sao vì quá bận rộn...</p>
+        <section id="courses" class="courses-section">
+            <h2 style="text-align: center; color: #093076; margin-bottom: 50px; font-size: 2rem;">
+                Các lớp học của Như 🎀
+            </h2>
+            
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                
+                <div class="course-card" onclick="navigateTo('class11')">
+                    <div class="course-content">
+                        <h3>Lớp 1:1</h3>
+                        <p>Nếu bạn cần một lộ trình cá nhân hóa, "dí" deadline sát sao vì quá bận rộn...</p>
+                    </div>
+                    <span class="explore-btn">Khám phá →</span>
+                </div>
+
+                <div class="course-card" onclick="navigateTo('class14')">
+                    <div class="course-content">
+                        <h3>Lớp 1:4</h3>
+                        <p>Nếu bạn muốn có đồng đội sát cánh, học vui và tiết kiệm chi phí...</p>
+                    </div>
+                    <span class="explore-btn">Khám phá →</span>
+                </div>
+
+                <div class="course-card" onclick="navigateTo('coaching')">
+                    <div class="course-content">
+                        <h3>Coaching</h3>
+                        <p>Nếu bạn thích tự học nhưng cần người định hướng...</p>
+                    </div>
+                    <span class="explore-btn">Khám phá →</span>
+                </div>
+
             </div>
-            <span class="explore-btn">Khám phá →</span>
-        </div>
+        </section>
 
-        <div class="course-card" onclick="navigateTo('class14')">
-            <div class="course-content">
-                <h3>Lớp 1:4</h3>
-                <p>Nếu bạn muốn có đồng đội sát cánh, học vui và tiết kiệm chi phí...</p>
-            </div>
-            <span class="explore-btn">Khám phá →</span>
-        </div>
-
-        <div class="course-card" onclick="navigateTo('coaching')">
-            <div class="course-content">
-                <h3>Coaching</h3>
-                <p>Nếu bạn thích tự học nhưng cần người định hướng...</p>
-            </div>
-            <span class="explore-btn">Khám phá →</span>
-        </div>
-
-    </div>
-</section>
-
-        <section id="contact-section" style="padding: 100px 0; text-align: center;">
+        <section id="contact-section" style="margin: 80px auto; padding: 60px 20px; text-align: center; background: #fff; border-radius: 40px; border: 2px dashed var(--teal-blue); max-width: 900px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
             <h2>Kết nối với Như 📲</h2>
             <div class="contact-container">
                 <div class="contact-row">
@@ -446,12 +376,12 @@
                 </div>
                 <p style="margin-top: 20px;">Hoặc quét mã để kết nối qua Zalo:</p>
                 <div style="background: white; padding: 20px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: inline-block; text-align: center; max-width: 280px;">
-    <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin: -50px auto 15px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-    </div>
-    <h4 style="margin: 0; color: #093076; font-size: 1.1rem;">Quỳnh Như</h4>
-    <p style="margin: 5px 0 15px; color: #888; font-size: 0.85rem;">Danh thiếp Zalo</p>
-    <img src="images/zalo.png" alt="Zalo QR" style="width: 200px; height: auto; border-radius: 15px; display: block; margin: 0 auto;">
-</div>
+                    <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin: -50px auto 15px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    </div>
+                    <h4 style="margin: 0; color: #093076; font-size: 1.1rem;">Quỳnh Như</h4>
+                    <p style="margin: 5px 0 15px; color: #888; font-size: 0.85rem;">Danh thiếp Zalo</p>
+                    <img src="images/zalo.png" alt="Zalo QR" style="width: 200px; height: auto; border-radius: 15px; display: block; margin: 0 auto;">
+                </div>
             </div>
         </section>
     </div>
@@ -561,20 +491,22 @@
 </div>
 
 <div style="margin-top: 60px; padding: 40px; background: #fff; border-radius: 30px; text-align: center; border: 1px solid var(--pastel-blue);">
-    <p>Nếu bạn có nhu cầu đặc biệt khác, đừng ngần ngại nhắn Như!"    
-<div style="margin-top: 30px; font-size: 0.8rem; color: #999; line-height: 1.4;">
+    <p>Nếu bạn có nhu cầu đặc biệt khác, đừng ngần ngại nhắn Như!"</p>
+    <div style="margin-top: 30px; font-size: 0.8rem; color: #999; line-height: 1.4;">
         <p><b>* Chính sách cam kết:</b> Mức phí ưu đãi (Gói Bạn Thân/Tâm Giao) áp dụng cho HV đi hết lộ trình.<br>
         Trường hợp HV dừng học trước hạn, các buổi đã học sẽ được tất toán theo mức phí Gói Bạn Mới (3.000.000đ/tháng).</p>
-        </b> Học viên học buổi nào, Như tính buổi đó và trừ các buổi nghỉ (xem thêm thông tin về ngày nghỉ và phí tại đây). Với Như, quyền lợi của HV là trên hết.<br></p>
+        <p>Học viên học buổi nào, Như tính buổi đó và trừ các buổi nghỉ (xem thêm thông tin về ngày nghỉ và phí tại đây). Với Như, quyền lợi của HV là trên hết.<br></p>
     </div>
 </div>
+</div>
 
-    <div id="class14" class="page">
+<div id="class14" class="page">
     <div class="container">
         <h2 style="text-align: center;">Lớp nhóm 1:4 (Teamwork)</h2>
         <p style="text-align: center; font-size: 1.2rem;">
             <span class="highlight">Nếu bạn cần những đồng đội sát cánh trên hành trình học và được theo dõi sát sao, lớp 1:4 rất hợp với bạn.</span>
         </p>
+        
         <p style="margin-top: 50px;">🌸 Lộ trình của khoá 1:4 kéo dài <b> 6 tháng</b> bao gồm:</p>
         
         <div class="timeline-container">
@@ -591,102 +523,6 @@
                 <p>- Luyện nói qua các chủ đề về bản thân và hằng ngày.<br>- Rèn các kỹ năng/phát triển ý trong giao tiếp.<br>- Xây dựng sự tự tin và năng lực sử dụng tiếng Anh qua bài tập tình huống thực tế.</p>
             </div>
         </div>
-
-<style>
-    /* Tổng quan Grid học phí */
-    .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin-top: 30px;
-    }
-
-    /* Thẻ giá chung */
-    .price-card {
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 25px;
-        border: 2px solid #f0f0f0;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    .price-card.popular {
-        border-color: #F2C9DC;
-        background: #fdf2f7;
-        transform: scale(1.02);
-    }
-
-    /* Hiệu ứng giá tiền */
-    .price-tag {
-        font-size: 1.8rem;
-        font-weight: bold;
-        margin: 15px 0;
-        color: #2d3436;
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-    }
-
-    /* Class gạch ngang giá cũ (8.4M) */
-    .old-price-strike {
-        font-size: 1rem;
-        text-decoration: line-through;
-        color: #b2bec3;
-        font-weight: normal;
-    }
-
-    /* Class KHÔNG GẠCH NGANG dành cho đơn vị thời gian / đợt */
-    .no-strike {
-        font-size: 0.9rem;
-        font-weight: normal;
-        color: #636e72;
-        text-decoration: none !important;
-        display: inline-block;
-    }
-
-    /* Thông tin phụ màu cam */
-    .total-info-orange {
-        display: block;
-        font-size: 0.85rem;
-        color: #e67e22;
-        margin-top: -10px;
-        margin-bottom: 15px;
-    }
-
-    .note-text {
-        font-size: 0.85rem;
-        line-height: 1.5;
-        color: #636e72;
-        margin-bottom: 15px;
-        display: block;
-    }
-
-    .benefit-list-clean {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0;
-        font-size: 0.9rem;
-    }
-
-    .benefit-list-clean li {
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-    }
-
-    .badge-label {
-        position: absolute;
-        top: -12px;
-        right: 20px;
-        padding: 4px 15px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: bold;
-    }
-</style>
 
 <section id="tuition-1:4" style="margin-top: 60px;">
     <h2 style="text-align: center; font-family: 'Playfair Display', serif;">🌸 Học phí & Sự đồng hành</h2>
@@ -753,6 +589,7 @@
         </p>
     </div>
 </section>
+</div>
     
 <div id="coaching" class="page">
     <div class="container" style="text-align: center; padding: 100px 0;">
@@ -798,10 +635,11 @@
         }, 500);
     }
 
-    // 2. ĐIỀU HƯỚNG THÔNG MINH (Hỗ trợ nút BACK trình duyệt)
+    // 2. ĐIỀU HƯỚNG THÔNG MINH (Đã sửa lỗi URL Trang chủ)
     function navigateTo(pageId, sectionId) {
-        // Cập nhật URL ảo để nút Back hoạt động
-        history.pushState({ pageId: pageId, sectionId: sectionId }, "", `#${pageId}`);
+        // Nếu nhấn về home, URL sẽ không hiện #home hay #class11 nữa mà là trang gốc
+        let url = pageId === 'home' ? window.location.pathname : `#${pageId}`;
+        history.pushState({ pageId: pageId, sectionId: sectionId }, "", url);
         renderPage(pageId, sectionId);
     }
 
@@ -811,7 +649,6 @@
         if(targetPage) {
             targetPage.classList.add('active');
             window.scrollTo(0, 0);
-            
             if(sectionId) {
                 setTimeout(() => {
                     const el = document.getElementById(sectionId);
@@ -819,6 +656,11 @@
                 }, 300);
             }
         }
+
+        // Kích hoạt highlight khi vào trang
+        setTimeout(() => {
+            document.querySelectorAll('.highlight').forEach(h => h.classList.add('active'));
+        }, 300);
     }
 
     // Xử lý khi nhấn nút Back của trình duyệt
@@ -846,7 +688,7 @@
     // Khởi tạo
     window.onload = () => {
         createDaisies();
-        // Mặc định load trang chủ
+        // Mặc định load trang chủ hoặc trang theo hash
         const hash = window.location.hash.replace('#', '') || 'home';
         renderPage(hash);
     };
