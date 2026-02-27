@@ -220,6 +220,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Bóng cực nhẹ */
         }
         .price-card h3 { margin: 0; font-size: 1.2rem; }
+
         
         /* Chi tiết giá tiền trong thẻ */
         .price-tag { 
@@ -227,7 +228,26 @@
             display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; 
         }
         .price-tag span { font-size: 0.9rem; text-decoration: line-through; color: #b2bec3; font-weight: normal; }
-        
+        /* FIX: Sửa lỗi gạch ngang dính vào /tháng */
+        .price-tag { 
+            font-size: 2rem; 
+            font-weight: 800; 
+            color: var(--primary-blue); 
+            margin: 15px 0; 
+        }
+        .price-tag .old-price { 
+            text-decoration: line-through; 
+            color: #ccc; 
+            font-size: 1.2rem; 
+            margin-right: 10px;
+        }
+        .price-unit { 
+            text-decoration: none !important; 
+            display: inline-block; 
+            font-size: 1rem; 
+            color: var(--text-gray);
+            font-weight: 400;
+        }
         /* Hỗ trợ các class sinh ra từ bản mới nhất */
         .old-price-strike { text-decoration: line-through; color: #b2bec3; font-size: 1rem; font-weight: normal; }
         .no-strike { font-size: 0.9rem; font-weight: normal; color: #636e72; text-decoration: none !important; display: inline-block; margin-left: 5px;}
@@ -585,9 +605,11 @@
 
     <div style="margin-top: 40px; padding: 20px; background-color: #fdf2f7; border-radius: 20px; text-align: center; border: 1px dashed #F2C9DC;">
         <p style="margin: 0; color: #2d3436; font-size: 0.95rem;">
-            ✨ <b>Đặc biệt với các bạn sinh viên:</b> Nếu các bạn tạm thời đang loay hoay với chi phí học, các bạn đừng ngại nhắn cho chị nha. Nếu có thể, chị rất mong được hỗ trợ các bạn.❤️... chị rất mong được hỗ trợ các bạn ❤️ </p> </div> </section> </div> </div> <div id="coaching" class="page">
-        </p>
+            ✨ <b>Đặc biệt với các bạn sinh viên:</b> Nếu các bạn tạm thời đang loay hoay với chi phí học, các bạn đừng ngại nhắn cho chị nha. Nếu có thể, chị rất mong được hỗ trợ các bạn.❤️... chị rất mong được hỗ trợ các bạn ❤️</p> 
     </div>
+    <button onclick="showPage('home')" style="display: block; margin: 40px auto; padding: 10px 30px; border-radius: 20px; border: 1px solid var(--pastel-pink); background: none; cursor: pointer;">← Quay về Trang chủ</button>
+    </div>
+</div>
 </section>
 </div>
     
