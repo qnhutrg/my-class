@@ -4,620 +4,616 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lớp học của Như | Loving & Teaching</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
+            /* Palette màu đậm đà hơn theo feedback */
+            --primary-blue: #093076; /* Đậm đà cho Heading */
             --pastel-pink: #F2C9DC;
-            --pastel-blue: #B8D6D9;
-            --soft-pink: #fdf2f7;
-            --white: #ffffff;
-            --text-dark: #2d3436;
-            --text-gray: #636e72;
-            --accent-green: #55efc4;
+            --hot-pink: #F2A7D0;
+            --teal-blue: #B8D6D9;
+            --light-cyan: #D0EFF2;
+            --soft-white: #FCFDFD;
+            --text-dark: #1a1a1a;
+            --text-gray: #4a4a4a;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        
         body { 
             font-family: 'Lora', serif; 
             margin: 0; 
-            line-height: 1.7; 
+            line-height: 1.8; 
             color: var(--text-dark); 
-            background-color: #fdfdfd;
+            background-color: var(--soft-white);
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--text-dark); }
+        h1, h2, h3, h4 { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--primary-blue); 
+            line-height: 1.3;
+        }
 
-        /* Navigation Bar */
+        h2 { font-size: 2.2rem; margin-bottom: 1.5rem; position: relative; }
+
+        /* Navigation */
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 0.8rem 5%;
             display: flex;
             justify-content: center;
-            align-items: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
+            z-index: 2000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
-        .nav-links li { position: relative; margin: 0 15px; }
+        .nav-links { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; }
+        .nav-links li { position: relative; margin: 0 20px; }
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: 0.3s;
         }
-        .nav-links a:hover { color: var(--pastel-pink); }
+        .nav-links a:hover { color: var(--hot-pink); }
 
-        /* Dropdown Menu */
+        /* Dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: var(--white);
-            min-width: 180px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            margin-top: 10px;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 0;
             overflow: hidden;
         }
         .dropdown:hover .dropdown-content { display: block; }
         .dropdown-content a {
-            padding: 12px 16px;
+            padding: 12px 20px;
             display: block;
-            font-size: 0.9rem;
-            border-bottom: 1px solid #f9f9f9;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f5f5f5;
         }
+        .dropdown-content a:last-child { border: none; }
 
-        /* HIGHLIGHT EFFECT */
-        .highlight {
-            background: linear-gradient(to right, var(--pastel-pink) 50%, transparent 50%);
-            background-size: 200% 100%;
-            background-position: right bottom;
-            display: inline;
-            padding: 2px 8px;
-            transition: background-position 1s ease-out;
-            border-radius: 4px;
-        }
-        .highlight.active { background-position: left bottom; }
-
-        /* GREETING */
+        /* Hero & Daisy Animation */
         .hero {
-            padding: 80px 10%;
-            background: linear-gradient(135deg, #e0f2f1, #fce4ec);
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--light-cyan), #fff, var(--pastel-pink));
+            overflow: hidden; /* Cúc chỉ rơi trong này */
             text-align: center;
         }
+
+        #daisy-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+        }
+
+        .daisy {
+            position: absolute;
+            font-size: 20px;
+            user-select: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+        }
+
         .greeting-box {
-            background: rgba(255, 255, 255, 0.85);
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
             padding: 40px;
-            border-radius: 30px;
-            max-width: 800px;
-            margin: 0 auto;
+            border-radius: 40px;
+            max-width: 700px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        /* Profile Section Animation */
+        .about-flex {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .about-img-container {
+            flex: 1;
             opacity: 0;
             transform: translateX(-100px);
-            animation: slideIn 1.2s forwards ease-out;
+            transition: 1s ease-out;
         }
-        @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
 
-        /* POP-UP CARDS (Cây lớp học) */
-        .course-tree {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 40px;
+        .about-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 40px;
+            box-shadow: 20px 20px 0 var(--teal-blue);
         }
-        .course-card {
-            background: var(--white);
+
+        .about-text {
+            flex: 1.5;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: 1s ease-out;
+        }
+
+        .about-flex.show .about-img-container,
+        .about-flex.show .about-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Timeline UI */
+        .timeline-container { position: relative; max-width: 850px; margin: 50px auto; padding-left: 20px; }
+        .timeline-item {
+            background: white;
+            margin-bottom: 35px;
             padding: 30px;
             border-radius: 25px;
-            width: 300px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(50px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+            border-left: 10px solid var(--teal-blue);
+            transition: 0.3s;
         }
-        .course-card.show { opacity: 1; transform: translateY(0); }
-        .course-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid var(--pastel-pink); }
-        .course-card h4 { margin-top: 0; color: var(--text-dark); }
-        .course-card p { font-size: 0.85rem; color: var(--text-gray); }
+        .timeline-item:hover { transform: scale(1.02); }
 
-        /* TIMELINE UI */
-        .timeline-container { position: relative; max-width: 800px; margin: 40px auto; padding-left: 30px; }
-        .timeline-item {
-            background: var(--white);
-            margin-bottom: 30px;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 8px solid var(--pastel-blue);
-            position: relative;
-        }
-        .timeline-item h4 { margin: 0 0 10px 0; color: var(--text-dark); }
-
-        /* PRICING UI (UX/UI IMPROVED) */
+        /* Pricing UI Fixes */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
         .price-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 25px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 35px;
             border: 2px solid #f0f0f0;
-            position: relative;
-            transition: all 0.3s;
             display: flex;
             flex-direction: column;
+            transition: 0.4s;
+            position: relative;
         }
-        .price-card.popular { border-color: var(--pastel-pink); background: var(--soft-pink); transform: scale(1.03); }
-        .price-card h3 { margin: 0; font-size: 1.2rem; }
-        .price-tag { font-size: 1.8rem; font-weight: bold; margin: 15px 0; color: var(--text-dark); }
-        .price-tag span { font-size: 0.9rem; text-decoration: line-through; color: #b2bec3; font-weight: normal; }
-        .benefit-list { list-style: none; padding: 0; margin: 20px 0; font-size: 0.9rem; flex-grow: 1; }
-        .benefit-list li { margin-bottom: 10px; display: flex; align-items: center; }
-        .benefit-list li::before { content: '🌸'; margin-right: 10px; font-size: 0.8rem; }
-        .badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: var(--pastel-pink);
+        .price-card.popular { 
+            border-color: var(--hot-pink); 
+            background: #fffafa; 
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(242, 167, 208, 0.15);
+        }
+        
+        /* FIX: Sửa lỗi gạch ngang dính vào /tháng */
+        .price-tag { 
+            font-size: 2rem; 
+            font-weight: 800; 
+            color: var(--primary-blue); 
+            margin: 15px 0; 
+        }
+        .price-tag .old-price { 
+            text-decoration: line-through; 
+            color: #ccc; 
+            font-size: 1.2rem; 
+            margin-right: 10px;
+        }
+        .price-unit { 
+            text-decoration: none !important; 
+            display: inline-block; 
+            font-size: 1rem; 
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .contact-row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .contact-link {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--teal-blue);
+            transition: 0.3s;
+        }
+        .contact-link:hover { background: var(--teal-blue); color: white; }
+
+        /* Back to top */
+        .btn-up {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--hot-pink);
             color: white;
-            padding: 4px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: 0.3s;
         }
 
-        /* BACK TO TOP */
-        .back-to-top {
-            position: ed; bottom: 30px; right: 30px;
-            background: var(--pastel-pink); color: white;
-            width: 45px; height: 45px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-
-        /* PAGE SWITCHING LOGIC */
-        .page { display: none; padding: 60px 10%; }
-        .page.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
+        /* Utility */
+        .page { display: none; padding: 40px 8%; }
+        .page.active { display: block; animation: fadeIn 0.6s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         .container { max-width: 1100px; margin: auto; }
-        .about-flex { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; margin-top: 40px; }
-        .about-img { flex: 1; min-width: 300px; border-radius: 30px; box-shadow: 15px 15px 0 var(--pastel-blue); }
-        .about-text { flex: 1.5; }
+        .highlight { background: linear-gradient(120deg, var(--pastel-pink) 0%, var(--pastel-pink) 100%); background-repeat: no-repeat; background-size: 100% 0.3em; background-position: 0 88%; }
 
-        @media (max-width: 768px) {
-            .hero { padding: 40px 5%; }
-            .pricing-grid { grid-template-columns: 1fr; }
+        /* Course Tree Animation */
+        .course-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 30px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.4s;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
         }
+        .course-card.show { opacity: 1; transform: translateY(0); }
+        .course-card:hover { border: 2px solid var(--hot-pink); transform: translateY(-10px); }
+
     </style>
 </head>
 <body>
 
-<a href="#" class="back-to-top">↑</a>
+<a href="#" class="btn-up">↑</a>
 
 <nav>
     <ul class="nav-links">
-        <li><a onclick="showPage('home')">Như là ai?</a></li>
+        <li><a onclick="navigateTo('home')">Như là ai?</a></li>
         <li class="dropdown">
             <a href="#">Thông tin lớp ▾</a>
             <div class="dropdown-content">
-                <a onclick="showPage('class11')">Lớp 1:1</a>
-                <a onclick="showPage('class14')">Lớp 1:4</a>
-                <a href="#">Coaching (Sắp có)</a>
+                <a onclick="navigateTo('class11')">Lớp 1:1 (Personalized)</a>
+                <a onclick="navigateTo('class14')">Lớp 1:4 (Teamwork)</a>
+                <a onclick="navigateTo('coaching')">Coaching (Dành cho tự học)</a>
             </div>
         </li>
-         <li><a href="#">Câu hỏi thường gặp</a></li>
-        <li><a onclick="showPage('home', 'contact')">Liên hệ</a></li>
+        <li><a onclick="navigateTo('faq')">Câu hỏi thường gặp</a></li>
+        <li><a onclick="navigateTo('home', 'contact-section')">Liên hệ</a></li>
     </ul>
 </nav>
 
 <div id="home" class="page active">
     <header class="hero">
+        <div id="daisy-container"></div>
         <div class="greeting-box">
-            <h2>Xin chào,</h2>
-            <p>Xin chào! Cảm ơn bạn đã ghé thăm. Hãy xem qua các thông tin bên dưới để tìm khóa học phù hợp, hoặc nhắn tin trực tiếp cho Như nếu bạn cần hỗ trợ thêm nhé!</p>
+            <h1>Chào bạn, mình là Như🌼</h1>
+            <p>Rất vui vì bạn đã dừng chân tại đây. Hãy cùng Như khám phá hành trình làm chủ tiếng Anh một cách tự nhiên và bền bỉ nhất nhé! Nếu vẫn chưa tìm thấy lớp phù hợp, đừng ngại nhắn Như qua các kênh thông tin bên dưới nhé 😉</p>
         </div>
     </header>
 
     <div class="container">
-        <section id="about" style="margin-top: 60px;">
-            <h2 style="text-align: center;">Như là ai? ✨</h2>
-            <div class="about-flex">
-                <img src="https://via.placeholder.com/400x500" alt="Nhu Profile" class="about-img">
-                <div class="about-text">
-                    <h3>Sứ mệnh</h3>
-                    <p>Là một giáo viên chuyên mảng phát âm-tiếng Anh giao tiếp và công sở với tâm thế đồng hành. Như tin rằng mỗi người học đều có một nhịp điệu riêng, và nhiệm vụ của Như là giúp bạn tìm thấy nhịp điệu đó để tự tin tỏa sáng.</p>
-                    
-                    <h3>Thông tin background</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>🌸 7 năm giảng dạy phát âm-tiếng Anh giao tiếp cho học viên người lớn</li>
-                        <li>🌸 Cử nhân Ngôn ngữ Anh (ĐH Quốc tế, ĐHQG-TPHCM)</li>
-                        <li>🌸 Chứng chỉ TESOL quốc tế 120H</li>
-                        <li>🌸 IELTS Academic 7.5</li>
+        <section id="about-section" class="about-flex">
+            <div class="about-img-container">
+                <picture>
+                    <source srcset="images/profile.png" type="image/png">
+                    <img src="images/profile.jpg" alt="Quỳnh Như" class="about-img">
+                </picture>
+            </div>
+            <div class="about-text">
+                <h2>Sứ mệnh đồng hành ✨</h2>
+                <p>Như không chỉ dạy tiếng Anh, Như muốn truyền cảm hứng để bạn tìm thấy nhịp điệu riêng của mình trong ngôn ngữ. Với Như, giáo dục là sự thấu hiểu và trao quyền.</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li>🎀 7 năm giảng dạy Phát âm & Giao tiếp người lớn</li>
+                    <li>🎀 Cử nhân Ngôn ngữ Anh (ĐH Quốc tế - ĐHQG)</li>
+                    <li>🎀 Chứng chỉ TESOL quốc tế 120H & IELTS Academic 7.5</li>
                     </ul>
                     <a href="https://qnhutrg.github.io/teaching-portfolio/" target="_blank" style="color: var(--text-dark); font-weight: bold; text-decoration: underline;">Xem thêm profile của Như tại đây</a>
                 </div>
             </div>
         </section>
 
-        <section id="classes-tree" style="margin-top: 100px;">
-            <h2 style="text-align: center;">Các lớp của Như 🎀</h2>
-            <div class="course-tree">
-                <div class="course-card" onclick="showPage('class11')">
-                    <h4>Lớp 1:1</h4>
-                    <p>Nếu bạn cần một lộ trình cá nhân hoá và một người dí deadline bạn...</p>
-                    <small>Xem chi tiết →</small>
+        <section id="courses" style="margin: 80px 0;">
+            <h2 style="text-align: center;">Các lớp học của Như 🎀</h2>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; margin-top: 40px;">
+                <div class="course-card" onclick="navigateTo('class11')">
+                    <h3>Lớp 1:1</h3>
+                    <p>Nếu bạn cần một lộ trình cá nhân hóa, "dí" deadline sát sao vì quá bận rộn...</p>
+                    <span style="color: var(--hot-pink); font-weight: bold;">Khám phá →</span>
                 </div>
-                <div class="course-card" onclick="showPage('class14')">
-                    <h4>Lớp 1:4</h4>
-                    <p>Nếu bạn cần những đồng đội sát cánh trên hành trình học và được theo dõi sát sao...</p>
-                    <small>Xem chi tiết →</small>
+                <div class="course-card" onclick="navigateTo('class14')">
+                    <h3>Lớp 1:4</h3>
+                    <p>Nếu bạn muốn có đồng đội sát cánh, học vui và tiết kiệm chi phí...</p>
+                    <span style="color: var(--hot-pink); font-weight: bold;">Khám phá →</span>
                 </div>
-                <div class="course-card">
-                    <h4>Coaching</h4>
-                    <p>Nếu bạn cần người hướng dẫn từ xa và giúp bạn vững bước trên hành trình tự học...</p>
-                    <small>Xem chi tiết →</small>
+                <div class="course-card" onclick="navigateTo('coaching')">
+                    <h3>Coaching</h3>
+                    <p>Nếu bạn thích tự học nhưng cần người định hướng...</p>
+                    <span style="color: var(--hot-pink); font-weight: bold;">Khám phá →</span>
                 </div>
             </div>
         </section>
 
-        <section id="contact" style="margin: 100px 0; text-align: center; background: #fff; padding: 60px; border-radius: 40px; border: 2px dashed var(--pastel-blue);">
+        <section id="contact-section" style="padding: 100px 0; text-align: center;">
             <h2>Kết nối với Như 📲</h2>
-            <p>Email: quynhnhutrg@gmail.com</p>
-            <p>LinkedIn: linkedin.com/in/qnhutrg | Facebook: facebook.com/qnhutrg/</p>
-            <p>Threads/TikTok: <strong>@alonhuspeaking</strong></p>
+            <div class="contact-container">
+                <div class="contact-row">
+                    <a href="mailto:quynhnhutrg@gmail.com" class="contact-link">📧 Email: quynhnhutrg@gmail.com</a>
+                    <a href="https://linkedin.com/in/qnhutrg" target="_blank" class="contact-link">🔗 LinkedIn: /qnhutrg</a>
+                </div>
+                <div class="contact-row">
+                    <a href="https://facebook.com/qnhutrg" target="_blank" class="contact-link">👤 Facebook: /qnhutrg</a>
+                    <a href="https://tiktok.com/@alonhuspeaking" target="_blank" class="contact-link">🎵 TikTok: @alonhuspeaking</a>
+                </div>
+                <p style="margin-top: 20px;">Hoặc quét mã để kết nối qua Zalo:</p>
+                <img src="https://via.placeholder.com/150?text=Zalo+QR" alt="Zalo QR" style="width: 150px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            </div>
         </section>
     </div>
 </div>
 
 <div id="class11" class="page">
     <div class="container">
-        <h2 style="text-align: center;">Lớp học 1:1 (Personalized)</h2>
-        <p style="text-align: center; font-size: 1.2rem;">
-            <span class="highlight">Nếu bạn cần một lộ trình cá nhân hoá và một người dí deadline bạn, mô hình 1:1 dành cho bạn.</span>
-        </p>
+        <h2 style="text-align: center;">Lớp 1:1 (Cá nhân hoá)</h2>
+        <p style="text-align: center; font-size: 1.2rem;">Một mình một lộ trình, phát triển theo mong muốn của bạn.</p>
 
-        <p style="margin-top: 50px;">🌸 Lộ trình cơ bản của khoá 1:1 dao động từ <b>3-6 tháng+</b> tuỳ theo năng lực và nhu cầu của học viên (HV):</p>
-        
         <div class="timeline-container">
             <div class="timeline-item">
-                <h4>1️⃣ Phát âm cơ bản (6-12 buổi)</h4>
+                <h4>Phát âm (6-12 buổi)</h4>
                 <p>- Nắm vững bảng IPA, các quy tắc trọng âm, ngữ điệu để cải thiện phát âm.<br>- Nắm bắt kỹ thuật rèn phát âm và nguồn học liệu chất lượng.</p>
             </div>
-            <div class="timeline-item" style="border-left-color: var(--pastel-pink);">
-                <h4>2️⃣ Phản xạ (6-8 buổi)</h4>
+            <div class="timeline-item" style="border-left-color: var(--hot-pink);">
+                <h4>Phản xạ (6-8 buổi)</h4>
                 <p>- Trau dồi phản xạ nghe-nói bằng cách trả lời từ khoá.<br>- Học các cấu trúc, cụm từ (collocation) và thành ngữ (idioms).</p>
             </div>
             <div class="timeline-item">
-                <h4>3️⃣ Giao tiếp (10-20 buổi)</h4>
-                <p>- Luyện nói qua các chủ đề bản thân và hằng ngày.<br>- Xây dựng tự tin trong giao tiếp.<br><b>Đặc biệt, các buổi freetalk cuối giai đoạn HV nói 90%, GV chỉ hỗ trợ cách diễn đạt.</b></p>
+                <h4>Giao tiếp thực chiến (10-20 buổi)</h4>
+                <p>- Luyện nói qua các chủ đề bản thân và hằng ngày.<br>- Xây dựng tự tin trong giao tiếp.<br><b>Đặc biệt, các buổi freetalk cuối giai đoạn HV nói 80%, GV chỉ hỗ trợ cách diễn đạt.</b></p>
             </div>
         </div>
-        
-        <p style="font-size: 0.85rem; font-style: italic; text-align: center;">*Lưu ý, thời gian từng giai đoạn có thể thay đổi tùy theo nhu cầu và năng lực HV, hãy nhắn Như để biết thêm chi tiết!</p>
 
-   <h2 style="text-align: center; margin-top: 80px;">Học phí & Ưu đãi đặc biệt 💎</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Gói "Bạn mới"</h3>
+                <div class="price-tag">3.000.000đ <span class="price-unit">/tháng</span></div>
+                <p><i>"Củng cố nền tảng, linh hoạt thời gian (2-2.5 tháng)."</i></p>
+                <ul style="padding-left: 20px;">
+                    <li>Đóng theo tháng</li>
+                    <li><b>Tặng 01 buổi Coaching (45')</b></li>
+                </ul>
+            </div>
+            <div class="price-card popular">
+                <div style="background: var(--hot-pink); color: white; padding: 5px 15px; border-radius: 20px; position: absolute; top: -15px; right: 20px; font-size: 0.8rem;">NHƯ ĐỀ XUẤT</div>
+                <h3>Gói "Bạn thân"</h3>
+                <div class="price-tag"><span class="old-price">9M</span> 8.100.000đ</div>
+                <p><span class="price-unit">(~ 2.700.000đ / tháng)</span></p>
+                <p><i>"Vừa vặn về chi phí, tối ưu về môi trường luyện tập."</i></p>
+                <ul style="padding-left: 20px;">
+                    <li>Lộ trình 3 tháng (24 buổi)</li>
+                    <li><b>Tặng 02 buổi Coaching (45')</b></li>
+                </ul>
+            </div>
+            <div class="price-card">
+                <h3>Gói "Bạn tâm giao"</h3>
+                <div class="price-tag">12.500.000đ</div>
+                <p><span class="price-unit">(~ 2.500.000đ / tháng)</span></p>
+                <p><i>"Xây lại từ con số 0, cần sự đồng hành bền bỉ và cam kết mạnh mẽ."</i></p>
+                <ul style="padding-left: 20px;">
+                    <li>Lộ trình 5 tháng+ (40 buổi)</li>
+                    <li><b>Tặng 04 buổi Coaching (45')</b></li>
+                </ul>
+            </div>
+        </div>
 
-<div style="overflow-x: auto; margin-bottom: 50px;">
-    <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); min-width: 600px;">
-        <thead>
-            <tr style="background-color: var(--pastel-blue); color: var(--text-dark);">
-                <th style="padding: 20px; text-align: left;">Gói học</th>
-                <th style="padding: 20px;">Thời lượng</th>
-                <th style="padding: 20px;">Học phí / Tháng</th>
-                <th style="padding: 20px;">Quà tặng coaching</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr style="border-bottom: 1px solid #f0f0f0;">
-                <td style="padding: 15px 20px;"><b>🌸 Bạn mới</b></td>
-                <td style="padding: 15px; text-align: center;">1 tháng (8 buổi)</td>
-                <td style="padding: 15px; text-align: center;">3.000.000đ</td>
-                <td style="padding: 15px; text-align: center;">+ 01 buổi (45')</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f0f0f0; background-color: var(--soft-pink);">
-                <td style="padding: 15px 20px;"><b>✨ Bạn thân (Recommend)</b></td>
-                <td style="padding: 15px; text-align: center;">3 tháng (24 buổi)</td>
-                <td style="padding: 15px; text-align: center;">2.700.000đ</td>
-                <td style="padding: 15px; text-align: center;">+ 02 buổi (45')</td>
-            </tr>
-            <tr>
-                <td style="padding: 15px 20px;"><b>🤝 Bạn Tâm Giao</b></td>
-                <td style="padding: 15px; text-align: center;">5 tháng+ (40 buổi+)</td>
-                <td style="padding: 15px; text-align: center;">2.500.000đ</td>
-                <td style="padding: 15px; text-align: center;">+ 05 buổi (45')</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <div style="background: #fdf2f7; padding: 30px; border-radius: 25px; margin-top: 50px; border: 1px dashed var(--hot-pink);">
+            <h4 style="margin-top: 0;">📜 Chính sách cam kết</h4>
+            <p>Mức phí ưu đãi (Gói Bạn thân/tâm giao) áp dụng cho HV đi hết lộ trình.<br>
+            Trường hợp dừng học trước hạn, các buổi đã học sẽ được tất toán theo mức phí lẻ <b>3.000.000đ/tháng (tức 375.000đ/buổi)</b>.</p>
+            <p>Học viên học buổi nào, Như tính buổi đó và trừ các buổi nghỉ. <b>Với Như, quyền lợi của HV là trên hết.</b></p>
+            <p>Xem thêm thông tin về buổi nghỉ và phí.</b></p>
+        </div>
 
-<div class="pricing-grid">
-    <div class="price-card">
-        <h3>Gói "Bạn mới"</h3>
-        <div class="price-tag">3.000.000đ <span>/tháng</span></div>
-        <p style="font-size: 0.9rem; font-style: italic; color: #888; background: #f9f9f9; padding: 15px; border-radius: 12px;">
-            "Bạn đã có nền tảng, chỉ tìm kiếm hỗ trợ để củng cố và nạp kiến thức mới? Gói này dành cho bạn! Hoặc nếu bạn cần một lộ trình linh động (ví dụ 2 hoặc 2.5 tháng), đây là lựa chọn tối ưu."
+        <p style="text-align: center; margin-top: 40px;">
+            <a onclick="navigateTo('home', 'contact-section')" style="color: var(--primary-blue); font-weight: bold; cursor: pointer; text-decoration: underline;">Quay lại trang chủ để liên hệ với Như nhé →</a>
         </p>
-        <ul class="benefit-list">
-            <li><b>Tặng thêm 01 buổi coaching 1:1 (45')</b></li>
-            <li>Đóng phí theo từng tháng</li>
-            <li>Dành cho lộ trình ngắn hạn</li>
-        </ul>
-    </div>
-
-    <div class="price-card popular">
-        <div class="badge">NHƯ ĐỀ XUẤT NHẤT 🌟</div>
-        <h3>Gói "Bạn thân"</h3>
-        <div class="price-tag">8.100.000đ <br><span style="text-decoration: none; color: var(--text-dark); font-size: 0.8rem;">(Tương đương 2.700.000 VND/tháng)</span></div>
-        <p style="font-size: 0.9rem; font-style: italic; color: #666; background: white; padding: 15px; border-radius: 12px; border: 1px dashed var(--pastel-pink);">
-            "Bạn biết tiếng Anh nhưng ít dùng, mong muốn có môi trường và người đồng hành luyện nói hơn? Như đề xuất gói này nhất, vừa vặn về thời gian, chi phí và sự cam kết!"
-        </p>
-        <ul class="benefit-list">
-            <li><b>Tặng thêm 02 buổi coaching 1:1 (45')</b></li>
-            <li>Tiết kiệm 900.000đ so với gói tháng</li>
-            <li>Chia 2 đợt đóng phí dễ dàng</li>
-        </ul>
-    </div>
-
-    <div class="price-card">
-        <h3>Gói "Bạn Tâm Giao"</h3>
-        <div class="price-tag">12.500.000đ <br><span style="text-decoration: none; color: var(--text-dark); font-size: 0.8rem;">(Tương đương 2.5M/tháng)</span></div>
-        <p style="font-size: 0.9rem; font-style: italic; color: #888; background: #f9f9f9; padding: 15px; border-radius: 12px;">
-            "Dành cho bạn mất gốc hoặc cần xây lại từ đầu lộ trình phát âm - phản xạ - piao tiếp. Bạn cần một người đồng hành sát sao để không sao nhãng. Quyết định đầu tư dài hạn là ở bạn!"
-        </p>
-        <ul class="benefit-list">
-            <li><b>Tặng thêm 05 buổi coaching 1:1</b></li>
-            <li>Tiết kiệm 2.500.000đ (Trọn 1 tháng học)</li>
-            <li>Chia 3 đợt đóng phí linh hoạt</li>
-        </ul>
-    </div>
-</div>
-
-<div style="margin-top: 60px; padding: 40px; background: #fff; border-radius: 30px; text-align: center; border: 1px solid var(--pastel-blue);">
-    <p>Nếu bạn có nhu cầu đặc biệt khác, đừng ngần ngại nhắn Như qua 
-        <a href="https://zalo.me/s/qr-code-link" target="_blank" style="color: #0068FF; font-weight: bold; text-decoration: underline;">Zalo (Quét mã tại đây)</a> 
-        hoặc các kênh liên lạc bên dưới nhé!
-    </p>
-    <img src="https://via.placeholder.com/150" alt="Zalo QR" style="width: 120px; border-radius: 15px; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-    
-    <div style="margin-top: 30px; font-size: 0.8rem; color: #999; line-height: 1.4;">
-        <p><b>* Chính sách cam kết:</b> Mức phí ưu đãi (Gói Bạn thân/tâm giao) áp dụng cho HV đi hết lộ trình.<br>
-        Trường hợp HV dừng học trước hạn, các buổi đã học sẽ được tất toán theo mức phí Gói Bạn mới (3.000.000đ/tháng).
-        </b> Học viên học buổi nào, Như tính buổi đó và trừ các buổi nghỉ (xem thêm thông tin về ngày nghỉ và phí tại đây). Với Như, quyền lợi của HV là trên hết.<br></p>
     </div>
 </div>
 
 <div id="class14" class="page">
     <div class="container">
-        <h2 style="text-align: center;">Lớp nhóm 1:4 (Teamwork)</h2>
-        <p style="text-align: center; font-size: 1.2rem;">
-            <span class="highlight">Nếu bạn cần những đồng đội sát cánh trên hành trình học và được theo dõi sát sao, lớp 1:4 rất hợp với bạn.</span>
-        </p>
-
-        <p style="margin-top: 50px;">🌸 Lộ trình của khoá 1:4 kéo dài <b> 6 tháng</b> bao gồm:</p>
+        <h2 style="text-align: center;">Lớp 1:4 (Đội nhóm nhỏ)</h2>
+        <p style="text-align: center;">Học cùng đồng đội, vui gấp đôi, không lăn tăn chi phí.</p>
         
         <div class="timeline-container">
             <div class="timeline-item">
-                <h4>1️⃣ Phát âm cơ bản (12 buổi)</h4>
+                <h4>Phát âm (12 buổi)</h4>
                 <p>- Nắm vững bảng IPA.<br>- Học các kiến thức và quy tắc về trọng âm, ngữ điệu.<br>- Xây dựng phương pháp tự học phát âm bền vững.</p>
             </div>
-            <div class="timeline-item" style="border-left-color: var(--pastel-pink);">
-                <h4>2️⃣ Phản xạ (10 buổi)</h4>
+            <div class="timeline-item" style="border-left-color: var(--hot-pink);">
+                <h4>Phản xạ (10 buổi)</h4>
                 <p>- Luyện phát âm qua câu chuyện.<br>- Trau dồi phản xạ nghe-nói bằng cách trả lời từ khoá.<br>- Học các cấu trúc, cụm từ (collocation) và thành ngữ (idioms), bổ trợ giao tiếp hằng ngày.</p>
             </div>
             <div class="timeline-item">
-                <h4>3️⃣ Giao tiếp (26 buổi)</h4>
+                <h4>Giao tiếp (26 buổi)</h4>
                 <p>- Luyện nói qua các chủ đề về bản thân và hằng ngày.<br>- Rèn các kỹ năng/phát triển ý trong giao tiếp.<br>- Xây dựng sự tự tin và năng lực sử dụng tiếng Anh qua bài tập tình huống thực tế.</p>
             </div>
         </div>
 
-<style>
-    /* Tổng quan Grid học phí */
-    .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin-top: 30px;
-    }
-
-    /* Thẻ giá chung */
-    .price-card {
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 25px;
-        border: 2px solid #f0f0f0;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    .price-card.popular {
-        border-color: #F2C9DC;
-        background: #fdf2f7;
-        transform: scale(1.02);
-    }
-
-    /* Hiệu ứng giá tiền */
-    .price-tag {
-        font-size: 1.8rem;
-        font-weight: bold;
-        margin: 15px 0;
-        color: #2d3436;
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-    }
-
-    /* Class gạch ngang giá cũ (8.4M) */
-    .old-price-strike {
-        font-size: 1rem;
-        text-decoration: line-through;
-        color: #b2bec3;
-        font-weight: normal;
-    }
-
-    /* Class KHÔNG GẠCH NGANG dành cho đơn vị thời gian / đợt */
-    .no-strike {
-        font-size: 0.9rem;
-        font-weight: normal;
-        color: #636e72;
-        text-decoration: none !important;
-        display: inline-block;
-    }
-
-    /* Thông tin phụ màu cam */
-    .total-info-orange {
-        display: block;
-        font-size: 0.85rem;
-        color: #e67e22;
-        margin-top: -10px;
-        margin-bottom: 15px;
-    }
-
-    .note-text {
-        font-size: 0.85rem;
-        line-height: 1.5;
-        color: #636e72;
-        margin-bottom: 15px;
-        display: block;
-    }
-
-    .benefit-list-clean {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0;
-        font-size: 0.9rem;
-    }
-
-    .benefit-list-clean li {
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-    }
-
-    .badge-label {
-        position: absolute;
-        top: -12px;
-        right: 20px;
-        padding: 4px 15px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: bold;
-    }
-</style>
-
-<section id="tuition-1:4" style="margin-top: 60px;">
-    <h2 style="text-align: center; font-family: 'Playfair Display', serif;">🌸 Học phí & Sự đồng hành</h2>
-    <p style="text-align: center; font-weight: bold; font-size: 1.1rem; color: #2d3436; margin-bottom: 40px;">
-        Học phí gốc toàn khóa (48 buổi): 8.400.000đ
-    </p>
-
-    <div class="pricing-grid">
-        
-        <div class="price-card">
-            <div class="badge-label" style="background: #093076; color: white;">COMMITMENT</div>
-            <h3 style="font-family: 'Playfair Display', serif;">Gói "Bạn đời"</h3>
-            <span class="note-text">Trước khi chọn gói này, bạn nghĩ thật kỹ nhé! Vì nó sẽ "chặn đường lui" của bạn, và cũng là lời cam kết lớn nhất bạn đặt ra cho chính mình. Quyết định là ở bạn 😉</span>
-            
-            <div class="price-tag">
-                <span class="old-price-strike">8.400.000đ</span> 7.900.000đ
+<div class="pricing-grid">
+            <div class="price-card">
+                <div style="background: var(--primary-blue); color: white; padding: 5px 15px; border-radius: 20px; position: absolute; top: -15px; right: 20px; font-size: 0.8rem; font-weight: bold;">COMMITMENT</div>
+                <h3>Gói "Bạn đời"</h3>
+                <p style="font-size: 0.85rem; color: var(--text-gray); font-style: italic; background: #f9f9f9; padding: 10px; border-radius: 10px;">
+                    "Trước khi chọn gói này, bạn nghĩ thật kỹ nhé! Vì nó sẽ 'chặn đường lui' của bạn, và cũng là lời cam kết lớn nhất bạn đặt ra cho chính mình. Quyết định là ở bạn 😉"
+                </p>
+                <div class="price-tag">
+                    <span class="old-price">8.400.000đ</span> 7.900.000đ
+                </div>
+                <span style="color: #e67e22; font-size: 0.85rem; margin-top: -10px; margin-bottom: 15px;">(Tiết kiệm 500.000đ tiền mặt)</span>
+                <ul style="padding-left: 20px; font-size: 0.9rem;">
+                    <li>🌸 <b>Tặng 02 buổi Coaching 1:1 (45')</b></li>
+                    <li style="font-size: 0.8rem; font-style: italic; color: #888;">*Có thể dùng ngay trong lúc khóa học diễn ra</li>
+                </ul>
             </div>
-            <span class="total-info-orange">(Tiết kiệm 500.000đ tiền mặt)</span>
 
-            <ul class="benefit-list-clean">
-                <li>🌸 <b>Tặng 02 buổi Coaching 1:1 (45')</b></li>
-                <li style="font-size: 0.8rem; font-style: italic; margin-left: 25px;">*Có thể dùng ngay trong lúc khóa học diễn ra</li>
-            </ul>
+            <div class="price-card popular">
+                <div style="background: var(--hot-pink); color: white; padding: 5px 15px; border-radius: 20px; position: absolute; top: -15px; right: 20px; font-size: 0.8rem; font-weight: bold;">BEST CHOICE</div>
+                <h3>Gói "Bạn tri kỷ"</h3>
+                <p style="font-size: 0.85rem; color: var(--text-gray); font-style: italic;">
+                    "Nếu bạn vẫn muốn cam kết và có giải pháp linh hoạt, Như nghĩ lựa chọn này phù hợp với bạn."
+                </p>
+                <div class="price-tag">
+                    <span class="old-price">8.400.000M</span> 8.200.000đ
+                </div>
+                <span style="color: #e67e22; font-size: 0.85rem; margin-top: -10px; margin-bottom: 15px;">(Đóng 2 đợt: 4.100.000đ/đợt)</span>
+                <ul style="padding-left: 20px; font-size: 0.9rem;">
+                    <li>🌸 Tiết kiệm hơn so với đóng tháng</li>
+                    <li>🌸 <b>Tặng 01 buổi Coaching 1:1 (60')</b></li>
+                </ul>
+            </div>
+
+            <div class="price-card">
+                <div style="background: var(--teal-blue); color: var(--text-dark); padding: 5px 15px; border-radius: 20px; position: absolute; top: -15px; right: 20px; font-size: 0.8rem; font-weight: bold;">RECOMMENDED</div>
+                <h3>Gói "Bạn đồng hành"</h3>
+                <p style="font-size: 0.85rem; color: var(--text-gray); font-style: italic;">
+                    "Như không muốn bạn ôm bụng lo lắng tài chính khi bước vào lớp học đâu, thế nên Như đề xuất gói này nhất!"
+                </p>
+                <div class="price-tag">1.400.000đ <span class="price-unit">/tháng</span></div>
+                <span style="color: var(--text-gray); font-size: 0.85rem; margin-top: -10px; margin-bottom: 15px;">(Tổng khóa: 8.400.000đ)</span>
+                <ul style="padding-left: 20px; font-size: 0.9rem;">
+                    <li>🌸 Chia nhỏ áp lực tài chính</li>
+                    <li>🌸 <b>Tặng 01 buổi Coaching 1:1 (60')</b></li>
+                </ul>
+            </div>
         </div>
 
-        <div class="price-card popular">
-            <div class="badge-label" style="background: #F2C9DC; color: white;">BEST CHOICE</div>
-            <h3 style="font-family: 'Playfair Display', serif;">Gói "Bạn tri kỉ"</h3>
-            <span class="note-text">Nếu bạn vẫn muốn cam kết và có giải pháp linh hoạt, Như nghĩ lựa chọn này phù hợp với bạn. Với 2 lần đóng phí giữa chặng.</span>
-            
-            <div class="price-tag">
-                <span class="old-price-strike">8.400.000đ</span> 8.200.000đ 
-                <span class="no-strike" style="margin-left: 5px;">(4.1M / đợt)</span>
-            </div>
-            <span class="total-info-orange">(Tiết kiệm 200.000đ)</span>
-
-            <ul class="benefit-list-clean">
-                <li>🌸 Tiết kiệm hơn so với đóng tháng</li>
-                <li>🌸 <b>Tặng 01 buổi Coaching 1:1 (60')</b></li>
-            </ul>
-        </div>
-
-        <div class="price-card">
-            <div class="badge-label" style="background: #B8D6D9; color: #2d3436;">RECOMMENDED</div>
-            <h3 style="font-family: 'Playfair Display', serif;">Gói "Bạn đồng hành"</h3>
-            <span class="note-text">Đây vẫn là gói Như luôn đề xuất, vì nó giúp bạn linh hoạt tài chính. Như không muốn bạn ôm bụng lo lắng khi bước vào lớp học.</span>
-            
-            <div class="price-tag">
-                1.400.000đ <span class="no-strike">/ tháng</span>
-            </div>
-            <span class="total-info-orange">(Tổng khóa học: 8.400.000đ)</span>
-
-            <ul class="benefit-list-clean">
-                <li>🌸 Chia nhỏ áp lực tài chính hàng tháng</li>
-                <li>🌸 <b>Tặng 01 buổi Coaching 1:1 (60')</b></li>
-            </ul>
-        </div>
-
+<div id="coaching" class="page">
+    <div class="container" style="text-align: center; padding: 100px 0;">
+        <h2>Chương trình Coaching 📚</h2>
+        <p>Phần này đang được Như cập nhật nội dung. Hãy quay lại sau nhé!</p>
+        <button onclick="navigateTo('home')" class="contact-link" style="border: none; cursor: pointer;">Quay về Trang chủ</button>
     </div>
+</div>
 
-    <div style="margin-top: 40px; padding: 20px; background-color: #fdf2f7; border-radius: 20px; text-align: center; border: 1px dashed #F2C9DC;">
-        <p style="margin: 0; color: #2d3436; font-size: 0.95rem;">
-            ✨ <b>Đặc biệt với các bạn sinh viên:</b> Nếu các bạn tạm thời đang loay hoay với chi phí học, các bạn đừng ngại nhắn cho chị nha. Nếu có thể, chị rất mong được hỗ trợ các bạn ❤️
-        </p>
+<div id="faq" class="page">
+    <div class="container">
+        <h2 style="text-align: center;">Câu hỏi thường gặp (FAQ) ❓</h2>
+        <div style="margin-top: 40px;">
+            <p><i>Như sẽ sớm cập nhật các câu hỏi phổ biến tại đây...</i></p>
+        </div>
+        <button onclick="navigateTo('home')" class="contact-link" style="border: none; cursor: pointer;">Quay về Trang chủ</button>
     </div>
-</section>
+</div>
 
-<footer style="text-align: center; padding: 40px; color: var(--text-gray); font-size: 0.9rem;">
-    &copy; 2026 Nhu Truong Q. | Loving & Teaching
+<footer style="text-align: center; padding: 60px; color: var(--text-gray); font-size: 0.9rem;">
+    <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px;">
+    &copy; 2026 Quỳnh Như Trường | Loving & Teaching
 </footer>
 
 <script>
-    // Chuyển trang mượt mà
-    function showPage(pageId, sectionId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        window.scrollTo(0, 0);
+    // 1. HIỆU ỨNG HOA CÚC RƠI (Chỉ ở Hero)
+    function createDaisies() {
+        const container = document.getElementById('daisy-container');
+        const chars = ['🌼', '🌸', '✨'];
         
-        if(sectionId) {
-            setTimeout(() => {
-                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
-
-        // Kích hoạt highlight khi vào trang
-        setTimeout(() => {
-            document.querySelectorAll('.highlight').forEach(h => h.classList.add('active'));
-        }, 300);
+        setInterval(() => {
+            if (document.getElementById('home').classList.contains('active')) {
+                const daisy = document.createElement('div');
+                daisy.className = 'daisy';
+                daisy.innerText = chars[Math.floor(Math.random() * chars.length)];
+                daisy.style.left = Math.random() * 100 + 'vw';
+                daisy.style.animationDuration = Math.random() * 3 + 2 + 's';
+                daisy.style.opacity = Math.random();
+                container.appendChild(daisy);
+                
+                setTimeout(() => daisy.remove(), 5000);
+            }
+        }, 500);
     }
 
-    // Hiệu ứng hiện dần khi cuộn trang
+    // 2. ĐIỀU HƯỚNG THÔNG MINH (Hỗ trợ nút BACK trình duyệt)
+    function navigateTo(pageId, sectionId) {
+        // Cập nhật URL ảo để nút Back hoạt động
+        history.pushState({ pageId: pageId, sectionId: sectionId }, "", `#${pageId}`);
+        renderPage(pageId, sectionId);
+    }
+
+    function renderPage(pageId, sectionId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const targetPage = document.getElementById(pageId);
+        if(targetPage) {
+            targetPage.classList.add('active');
+            window.scrollTo(0, 0);
+            
+            if(sectionId) {
+                setTimeout(() => {
+                    const el = document.getElementById(sectionId);
+                    if(el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+            }
+        }
+    }
+
+    // Xử lý khi nhấn nút Back của trình duyệt
+    window.onpopstate = function(event) {
+        if (event.state) {
+            renderPage(event.state.pageId, event.state.sectionId);
+        } else {
+            renderPage('home');
+        }
+    };
+
+    // 3. ANIMATION KHI CUỘN CHUỘT
+    const observerOptions = { threshold: 0.2 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    document.querySelectorAll('.course-card').forEach(card => observer.observe(card));
+    // Quan sát các phần tử cần hiệu ứng
+    document.querySelectorAll('.about-flex, .course-card').forEach(el => observer.observe(el));
+
+    // Khởi tạo
+    window.onload = () => {
+        createDaisies();
+        // Mặc định load trang chủ
+        const hash = window.location.hash.replace('#', '') || 'home';
+        renderPage(hash);
+    };
 </script>
 
 </body>
