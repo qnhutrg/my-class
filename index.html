@@ -131,6 +131,27 @@
             border: 1px solid rgba(255,255,255,0.5);
         }
 
+ /* Màu sắc riêng cho từng bước trong Timeline */
+.timeline-item:nth-child(1) { border-left-color: var(--teal-blue); }
+.timeline-item:nth-child(2) { border-left-color: var(--pastel-pink); }
+.timeline-item:nth-child(3) { border-left-color: #ffdcb7; } /* Màu cam nhạt */
+
+/* Sửa lỗi gạch ngang lan sang chữ /tháng */
+.price-tag span { 
+    text-decoration: line-through; 
+    color: #b2bec3; 
+    font-weight: normal; 
+    margin-right: 5px; /* Tạo khoảng cách với giá mới */
+}
+
+/* Ép chữ /tháng hoặc phần đơn vị không bao giờ bị gạch */
+.price-tag .no-strike, 
+.price-tag sup,
+.price-tag small { 
+    text-decoration: none !important; 
+    display: inline-block; 
+}
+
         /* === VÙNG GIỚI THIỆU TẠI TRANG CHỦ === */
         .about-flex { display: flex; gap: 60px; align-items: center; padding: 80px 0; overflow: hidden; }
         .about-img-container { flex: 1; opacity: 0; transform: translateX(-100px); transition: 1s ease-out; }
@@ -228,26 +249,7 @@
             display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; 
         }
         .price-tag span { font-size: 0.9rem; text-decoration: line-through; color: #b2bec3; font-weight: normal; }
-        /* FIX: Sửa lỗi gạch ngang dính vào /tháng */
-        .price-tag { 
-            font-size: 2rem; 
-            font-weight: 800; 
-            color: var(--primary-blue); 
-            margin: 15px 0; 
-        }
-        .price-tag .old-price { 
-            text-decoration: line-through; 
-            color: #ccc; 
-            font-size: 1.2rem; 
-            margin-right: 10px;
-        }
-        .price-unit { 
-            text-decoration: none !important; 
-            display: inline-block; 
-            font-size: 1rem; 
-            color: var(--text-gray);
-            font-weight: 400;
-        }
+       
         /* Hỗ trợ các class sinh ra từ bản mới nhất */
         .old-price-strike { text-decoration: line-through; color: #b2bec3; font-size: 1rem; font-weight: normal; }
         .no-strike { font-size: 0.9rem; font-weight: normal; color: #636e72; text-decoration: none !important; display: inline-block; margin-left: 5px;}
