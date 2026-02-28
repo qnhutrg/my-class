@@ -151,6 +151,13 @@
             text-decoration: none !important; 
             display: inline-block; 
         }
+        .no-strike { 
+        text-decoration: none !important; 
+        display: inline-block; 
+        color: var(--text-gray); 
+        font-size: 0.9rem;
+        margin-left: 5px;
+        }
 
         /* === VÙNG GIỚI THIỆU TẠI TRANG CHỦ === */
         .about-flex { display: flex; gap: 60px; align-items: center; padding: 80px 0; overflow: hidden; }
@@ -310,7 +317,7 @@
     <ul class="nav-links">
         <li><a onclick="navigateTo('home')">Như là ai?</a></li>
         <li class="dropdown">
-            <a href="#">Thông margin lớp ▾</a>
+            <a href="#">Thông tin lớp ▾</a>
             <div class="dropdown-content">
                 <a onclick="navigateTo('class11')">Lớp 1:1 (Personalized)</a>
                 <a onclick="navigateTo('class14')">Lớp 1:4 (Teamwork)</a>
@@ -327,7 +334,7 @@
         <div id="daisy-container"></div>
         <div class="greeting-box">
             <h1>Chào bạn, mình là Như🌼</h1>
-            <p>Rất vui vì bạn đã dừng chân tại đây. Hãy cùng Như khám phá hành trình làm chủ tiếng Anh một cách tự nhiên và bền bỉ nhất nhé! Nếu vẫn chưa tìm thấy lớp phù hợp, đừng ngại nhắn Như qua các kênh thông tin bên dưới nhé 😉</p>
+            <p>Rất vui vì bạn đã đến. Hãy cùng Như khám phá hành trình làm chủ tiếng Anh một cách tự nhiên và bền bỉ nhất nhé! Nếu vẫn chưa tìm thấy lớp phù hợp, đừng ngại nhắn Như qua các kênh thông tin bên dưới nhé 😉</p>
         </div>
     </header>
 
@@ -341,9 +348,9 @@
             </div>
             <div class="about-text">
                 <h2>Sứ mệnh đồng hành ✨</h2>
-                <p>Như không chỉ dạy tiếng Anh, Như muốn truyền cảm hứng để bạn tìm thấy nhịp điệu riêng của mình trong ngôn ngữ. Với Như, giáo dục là sự thấu hiểu và trao quyền.</p>
+                <p>Như không chỉ dạy tiếng Anh, Như cùng bạn tìm thấy nhịp điệu riêng của mình trong ngôn ngữ. Với Như, giáo dục là sự thấu hiểu và trao quyền.</p>
                 <ul style="list-style: none; padding: 0;">
-                    <li>🎀 7 năm giảng dạy Phát âm & Giao tiếp người lớn</li>
+                    <li>🎀 7 năm giảng dạy Phát âm & Giao tiếp học viên người lớn</li>
                     <li>🎀 Cử nhân Ngôn ngữ Anh (ĐH Quốc tế - ĐHQG)</li>
                     <li>🎀 Chứng chỉ TESOL quốc tế 120H & IELTS Academic 7.5</li>
                 </ul>
@@ -361,7 +368,7 @@
                 <div class="course-card" onclick="navigateTo('class11')">
                     <div class="course-content">
                         <h3>Lớp 1:1</h3>
-                        <p>Nếu bạn cần một lộ trình cá nhân hóa, "dí" deadline sát sao vì quá bận rộn...</p>
+                        <p>Nếu bạn cần một lộ trình cá nhân hóa, được "dí" deadline sát sao...</p>
                     </div>
                     <span class="explore-btn">Khám phá →</span>
                 </div>
@@ -485,7 +492,7 @@
     </div>
 
     <div class="price-card popular">
-        <div class="badge">NHƯ ĐỀ XUẤT NHẤT 🌟</div>
+        <div class="badge">ĐỀ XUẤT NHẤT 🌟</div>
         <h3>Gói "Bạn thân"</h3>
         <div class="price-tag">8.100.000đ <br><span style="text-decoration: none; color: var(--text-dark); font-size: 0.8rem;">(Tương đương 2.700.000 VND/tháng)</span></div>
         <p style="font-size: 0.9rem; font-style: italic; color: #666; background: white; padding: 15px; border-radius: 12px; border: 1px dashed var(--pastel-pink);">
@@ -499,7 +506,7 @@
     </div>
 
     <div class="price-card">
-        <h3>Gói "Bạn Tâm Giao"</h3>
+        <h3>Gói "Bạn Tâm giao"</h3>
         <div class="price-tag">12.500.000đ <br><span style="text-decoration: none; color: var(--text-dark); font-size: 0.8rem;">(Tương đương 2.5M/tháng)</span></div>
         <p style="font-size: 0.9rem; font-style: italic; color: #888; background: #f9f9f9; padding: 15px; border-radius: 12px;">
             "Dành cho bạn mất gốc hoặc cần xây lại từ đầu lộ trình phát âm - phản xạ - piao tiếp. Bạn cần một người đồng hành sát sao để không sao nhãng. Quyết định đầu tư dài hạn là ở bạn!"
@@ -630,9 +637,10 @@
 </footer>
 
 <script>
-    // 1. HIỆU ỨNG HOA CÚC RƠI (Chỉ ở Hero)
+    // 1. HIỆU ỨNG HOA CÚC RƠI (Chỉ ở trang chủ)
     function createDaisies() {
         const container = document.getElementById('daisy-container');
+        if (!container) return;
         const chars = ['🌼', '🌸', '✨'];
         
         setInterval(() => {
@@ -647,48 +655,37 @@
                 
                 setTimeout(() => daisy.remove(), 5000);
             }
-        }, 500);
+        }, 600);
     }
 
-    // 2. ĐIỀU HƯỚNG THÔNG MINH (Đã sửa lỗi URL Trang chủ)
+    // 2. HÀM ĐIỀU HƯỚNG TRANG (Sửa lỗi không hiển thị class14)
     function navigateTo(pageId, sectionId) {
-        // Nếu nhấn về home, URL sẽ không hiện #home hay #class11 nữa mà là trang gốc
-        let url = pageId === 'home' ? window.location.pathname : `#${pageId}`;
-        history.pushState({ pageId: pageId, sectionId: sectionId }, "", url);
-        renderPage(pageId, sectionId);
-    }
-
-    function renderPage(pageId, sectionId) {
+        // Ẩn tất cả các trang
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        
+        // Hiển thị trang mục tiêu
         const targetPage = document.getElementById(pageId);
-        if(targetPage) {
+        if (targetPage) {
             targetPage.classList.add('active');
-            window.scrollTo(0, 0);
-            if(sectionId) {
+            window.scrollTo(0, 0); // Quay lên đầu trang mới
+
+            // Kích hoạt hiệu ứng highlight (bút dạ quang) sau khi trang hiện ra
+            setTimeout(() => {
+                targetPage.querySelectorAll('.highlight').forEach(h => h.classList.add('active'));
+            }, 300);
+
+            // Nếu có yêu cầu cuộn đến mục cụ thể (như Contact)
+            if (sectionId) {
                 setTimeout(() => {
                     const el = document.getElementById(sectionId);
-                    if(el) el.scrollIntoView({ behavior: 'smooth' });
-                }, 300);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 200);
             }
         }
-
-        // Kích hoạt highlight khi vào trang
-        setTimeout(() => {
-            document.querySelectorAll('.highlight').forEach(h => h.classList.add('active'));
-        }, 300);
     }
 
-    // Xử lý khi nhấn nút Back của trình duyệt
-    window.onpopstate = function(event) {
-        if (event.state) {
-            renderPage(event.state.pageId, event.state.sectionId);
-        } else {
-            renderPage('home');
-        }
-    };
-
-    // 3. ANIMATION KHI CUỘN CHUỘT
-    const observerOptions = { threshold: 0.2 };
+    // 3. HIỆU ỨNG HIỆN DẦN KHI CUỘN CHUỘT (Cho About và Course Cards)
+    const observerOptions = { threshold: 0.15 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -697,17 +694,17 @@
         });
     }, observerOptions);
 
-    // Quan sát các phần tử cần hiệu ứng
-    document.querySelectorAll('.about-flex, .course-card').forEach(el => observer.observe(el));
-
-    // Khởi tạo
+    // 4. KHỞI TẠO KHI TRANG LOAD XONG
     window.onload = () => {
         createDaisies();
-        // Mặc định load trang chủ hoặc trang theo hash
-        const hash = window.location.hash.replace('#', '') || 'home';
-        renderPage(hash);
+        
+        // Kích hoạt observer cho các phần tử trang chủ
+        document.querySelectorAll('.about-flex, .course-card').forEach(el => observer.observe(el));
+        
+        // Kích hoạt highlight cho trang mặc định (Home)
+        document.querySelectorAll('#home .highlight').forEach(h => h.classList.add('active'));
     };
 </script>
-
+    
 </body>
 </html>
