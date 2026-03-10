@@ -687,17 +687,114 @@
 
 <div id="faq" class="page">
     <div class="container">
-        <h2 style="text-align: center;">Câu hỏi thường gặp (FAQ) ❓</h2>
-        <div style="margin-top: 40px;">
-            <p><i>Như sẽ sớm cập nhật các câu hỏi phổ biến tại đây...</i></p>
+        <h2 style="text-align: center;">Câu hỏi thường gặp ❓</h2>
+        <p class="faq-intro">Những thắc mắc phổ biến — Như tổng hợp để bạn tiện tham khảo nhé!</p>
+
+        <div class="faq-wrapper">
+
+            <!-- Câu 1 -->
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span class="faq-question-text">1. Lộ trình lớp thường kéo dài bao lâu?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Tùy theo khóa và năng lực của học viên. Nếu là lớp <strong>1-4</strong> sẽ là <strong>6 tháng (48 buổi)</strong>, còn nếu là lớp <strong>1-1</strong> sẽ là <strong>3 đến 6 tháng+</strong>.</p>
+                        <p>Để biết được lộ trình của mình, Như khuyến khích nhà mình liên hệ để đặt lịch demo, hoặc test đầu vào qua đây. <em>(trang đang được cập nhật)</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Câu 2 -->
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span class="faq-question-text">2. Học phí sẽ đóng theo tháng hay theo khóa?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Như luôn đề xuất đóng <strong>theo tháng</strong> để học viên dễ linh hoạt tài chính hơn.</p>
+                        <p>Tuy nhiên, nếu học viên muốn tự cam kết với bản thân "nặng đô" hơn, có thể lựa chọn đóng theo gói mà Như đề xuất. Ở các gói cũng sẽ có những ưu đãi nhỏ như những món quà dành cho sự cam kết này 😉</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Câu 3 -->
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span class="faq-question-text">3. Quy định về nghỉ học và trừ phí sẽ tính như thế nào?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <div class="faq-label">Lớp 1-1</div>
+                        <p>Mỗi tháng học viên sẽ có <strong>2 buổi nghỉ không trừ phí</strong> (Như sẽ trừ phí 2 buổi đó qua tháng sau, hoặc hỗ trợ học bù vào ngày khác trong tháng). Tuy nhiên, nếu học viên nghỉ qua buổi thứ 3 (trừ những trường hợp bất khả kháng liên quan về sức khỏe, gia đình) thì sẽ bị <strong>mất phí</strong> của buổi học đó — Như không trừ qua tháng sau cũng như không dạy bù.</p>
+
+                        <div class="faq-label" style="background: var(--teal-blue); color: var(--primary-blue); margin-top: 12px;">Lớp 1-4</div>
+                        <p>Vì là lớp lớn nên nếu 1 học viên xin nghỉ thì lớp vẫn được diễn ra, <strong>không trừ hay bù phí</strong>. Học viên nghỉ học sẽ được hỗ trợ với:</p>
+                        <ul>
+                            <li>(1) Recording ghi hình của lớp ngày đó</li>
+                            <li>(2) 15 phút hỗ trợ bài vào đầu/cuối giờ của buổi tiếp theo</li>
+                        </ul>
+                        <p><em>Ví dụ: học viên nghỉ vào lesson 3, thì trước khi vào buổi học lesson 4 sẽ có recording xem lại, và đầu/cuối giờ của lesson 4 sẽ được Như hỗ trợ đi lại bài cũ (lesson 3).</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Câu 4 -->
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span class="faq-question-text">4. Có cam kết đầu ra không?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p><strong>Có và không.</strong></p>
+                        <p>✅ <strong>Có</strong>, khi học viên cũng cam kết với Như:</p>
+                        <ul>
+                            <li>Hoàn tất đủ 100% bài tập được đề ra</li>
+                            <li>Tham gia các hoạt động trong lớp</li>
+                            <li>Chủ động luyện nói/nghe/tiếp xúc với tiếng Anh qua các nguồn học liệu được gửi</li>
+                            <li>Có tinh thần chăm học và cầu thị</li>
+                        </ul>
+                        <p>❌ <strong>Không</strong>, khi học viên chỉ muốn tìm một lớp học để làm mình yên tâm.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Câu 5 -->
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span class="faq-question-text">5. Những giá trị sau khi học lớp của Như?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Một <strong>tinh thần không sợ sai khi nói tiếng Anh</strong> — đây là điều Như tiên quyết đề ra và luôn hướng học viên đạt được.</p>
+                        <p>Bên cạnh đó, học viên sẽ nhận được:</p>
+                        <ul>
+                            <li>🌿 Những nguồn học liệu chất lượng và phù hợp</li>
+                            <li>🌿 Các phương pháp và kỹ thuật luyện nghe-nói dễ áp dụng</li>
+                            <li>🌿 Tư duy học tiếng Anh đúng và bền vững</li>
+                            <li>🌿 Một thói quen tự học dài hạn</li>
+                            <li>🌿 Niềm yêu thích tiếng Anh đang từ từ trào dâng 🌸</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <button onclick="navigateTo('home')" class="contact-link" style="border: none; cursor: pointer;">Quay về Trang chủ</button>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="navigateTo('home')" class="contact-link" style="border: none; cursor: pointer;">Quay về Trang chủ</button>
+        </div>
     </div>
 </div>
 
 <footer style="text-align: center; padding: 60px; color: var(--text-gray); font-size: 0.9rem;">
     <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px;">
-    &copy; 2026 Quỳnh Như Trường | Loving & Teaching
+    &copy; 2026 Quỳnh Như Trương | Loving & Teaching
 </footer>
 
 <script>
@@ -769,6 +866,27 @@
         document.querySelectorAll('#home .highlight').forEach(h => h.classList.add('active'));
     };
 </script>
+    <script>
+    function toggleFaq(item) {
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        // Đóng tất cả các item đang mở
+        document.querySelectorAll('.faq-item.open').forEach(openItem => {
+            openItem.classList.remove('open');
+            openItem.querySelector('.faq-answer').classList.remove('open');
+        });
+
+        // Nếu item đang đóng thì mở ra
+        if (!isOpen) {
+            item.classList.add('open');
+            answer.classList.add('open');
+        }
+    }
+</script>
+
+</body>
+</html>
     
 </body>
 </html>
